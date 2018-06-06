@@ -1,0 +1,42 @@
+doctype html
+head
+  block vars
+  title Stock Market Prediction
+  meta(name="viewport", content="width=device-width, initial-scale=1")
+  link(rel="stylesheet", href="/vendor/fontello/css/s-m-p.css")
+  link(rel="stylesheet", href="/vendor/c3/c3.min.css")
+  link(rel="stylesheet", href="/stylesheets/dashboard.css")
+- var companySymbol = '';
+if(company && company.symbol)
+  - var companySymbol = company.symbol
+body(data-symbol='#{companySymbol}')
+  section.main-menu
+    div.menu
+        a(href='/user')
+          div.menu-option
+              i.icon-user 
+              if user.facebook.name
+                p #{user.facebook.name}
+              else if user.twitter.email
+                p #{user.twitter.displayName}
+              else if user.google.name
+                p #{user.google.name}
+              else if user.linkedin.name
+                p #{user.linkedin.name}
+              else if user.local.email
+                p #{user.local.email}
+        a(href='/companies')
+          div.menu-option.selected
+              i.icon-briefcase
+              p Companies
+        a(href='/news')
+          div.menu-option
+            i.icon-newspaper 
+            p News
+        a(href='/predictions')
+          div.menu-option
+            i.icon-chart-line 
+            p Predictions
+
+  section.main-section.main-section-with-sidebar
+    block content
